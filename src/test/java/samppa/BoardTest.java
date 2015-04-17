@@ -47,4 +47,20 @@ public class BoardTest {
                         "......\n"));
     }
 
+    @Test
+    public void stay_on_board_on_right() {
+        board.drop(Tetromino.I);
+        board.moveRight();
+        board.moveRight();
+        board.moveRight();
+        assertThat(board.toString(),
+                equalTo("" +
+                        "..IIII\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n"));
+    }
+
 }
