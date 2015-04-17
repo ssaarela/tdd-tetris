@@ -13,23 +13,41 @@ public class BoardTest {
 
     private Board board = new Board(3, 6);
 
-    @Test
-    public void empty_board() {
-        assertThat(board.toString(),
-                equalTo("" +
-                        "......\n" +
-                        "......\n" +
-                        "......\n"));
-    }
+    public class Drop {
+        @Test
+        public void empty_board() {
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "......\n" +
+                            "......\n" +
+                            "......\n"));
+        }
 
-    @Test
-    public void drop_I() {
-        board.drop(Tetromino.I);
-        assertThat(board.toString(),
-                equalTo("" +
-                        ".IIII.\n" +
-                        "......\n" +
-                        "......\n"));
+        @Test
+        public void no_falling_on_empty_board() {
+            assertThat(board.hasFalling(), equalTo(false));
+        }
+
+        @Test
+        public void drop_I() {
+            board.drop(Tetromino.I);
+            assertThat(board.hasFalling(), equalTo(true));
+            assertThat(board.toString(),
+                    equalTo("" +
+                            ".IIII.\n" +
+                            "......\n" +
+                            "......\n"));
+        }
+
+        @Test
+        public void drop_while_another_is_droping() {
+            board.drop(Tetromino.I);
+            try {
+                board.drop(Tetromino.I);
+            } catch (IllegalStateException e) {
+                assertThat(e.getMessage(), equalTo("falling already"));
+            }
+        }
     }
 
     public class Move {
@@ -91,6 +109,19 @@ public class BoardTest {
                             "......\n" +
                             ".IIII.\n" +
                             "......\n"));
+        }
+
+        @Test
+        public void stick_to_bottom() {
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.moveDown();
+            board.moveDown();
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "......\n" +
+                            "......\n" +
+                            ".IIII.\n"));
         }
     }
 }

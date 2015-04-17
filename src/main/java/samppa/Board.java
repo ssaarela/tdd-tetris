@@ -44,6 +44,9 @@ public class Board {
     }
 
     public void drop(Tetromino t) {
+        if (current != null) {
+            throw new IllegalStateException("falling already");
+        }
         this.current = t;
         this.location = new Point(0, cols / 2);
     }
@@ -77,5 +80,9 @@ public class Board {
 
     public void moveDown() {
         move(this.location.plus(MOVE_DOWN));
+    }
+
+    public boolean hasFalling() {
+        return this.current != null;
     }
 }
