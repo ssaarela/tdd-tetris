@@ -23,4 +23,25 @@ public class PointTest {
         assertThat(sum, not(sameInstance(p1)));
         assertThat(sum, not(sameInstance(p2)));
     }
+
+    @Test
+    public void point_equals() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(1, 1);
+        assertThat(p1, equalTo(p2));
+    }
+
+    @Test
+    public void point_not_equal_col() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(1, 2);
+        assertThat(p1, not(equalTo(p2)));
+    }
+
+    @Test
+    public void point_not_equal_row() {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(2, 1);
+        assertThat(p1, not(equalTo(p2)));
+    }
 }

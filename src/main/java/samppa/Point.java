@@ -12,4 +12,16 @@ public class Point {
     public Point plus(Point other) {
         return new Point(this.row + other.row, this.col + other.col);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        } else if (obj instanceof Point) {
+            Point other = (Point) obj;
+            return this.row == other.row && this.col == other.col;
+        } else {
+            return false;
+        }
+    }
 }
