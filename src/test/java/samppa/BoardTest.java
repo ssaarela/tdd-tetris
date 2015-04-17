@@ -244,6 +244,35 @@ public class BoardTest {
                             "..T...\n" +
                             "......\n"));
         }
+
+        @Test
+        public void rotate_T_right_2_times() {
+            board.drop(Tetromino.T);
+            board.moveDown();
+            board.rotateRight();
+            board.rotateRight();
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "......\n" +
+                            "..T...\n" +
+                            ".TTT..\n" +
+                            "......\n"));
+        }
+
+        @Test
+        public void rotate_T_right_3_times() {
+            board.drop(Tetromino.T);
+            board.moveDown();
+            board.rotateRight();
+            board.rotateRight();
+            board.rotateRight();
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "..T...\n" +
+                            "..TT..\n" +
+                            "..T...\n" +
+                            "......\n"));
+        }
     }
 
 }

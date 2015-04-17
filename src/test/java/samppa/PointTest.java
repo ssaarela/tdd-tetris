@@ -44,4 +44,9 @@ public class PointTest {
         Point p2 = new Point(2, 1);
         assertThat(p1, not(equalTo(p2)));
     }
+
+    @Test
+    public void to_string() {
+        assertThat(new Point(1, 2).toString(), equalTo("(1, 2)"));
+    }
 }
