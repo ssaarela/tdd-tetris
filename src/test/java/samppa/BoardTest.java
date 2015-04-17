@@ -221,13 +221,27 @@ public class BoardTest {
         }
 
         @Test
-        public void rotate_T_right() {
+        public void rotate_T_right_not_allowed_at_top() {
             board.drop(Tetromino.T);
+            board.rotateRight();
             assertThat(board.toString(),
                     equalTo("" +
                             ".TTT..\n" +
                             "..T...\n" +
                             "......\n" +
+                            "......\n"));
+        }
+
+        @Test
+        public void rotate_T_right() {
+            board.drop(Tetromino.T);
+            board.moveDown();
+            board.rotateRight();
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "..T...\n" +
+                            ".TT...\n" +
+                            "..T...\n" +
                             "......\n"));
         }
     }

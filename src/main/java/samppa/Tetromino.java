@@ -13,7 +13,8 @@ public class Tetromino {
             new Shape(0, 0, 0, 1, 1, 0, 1, 1)
     );
     public static final Tetromino T = define('T',
-            new Shape(0, -2, 0, -1, 0, 0, 1, -1)
+            new Shape(0, -2, 0, -1, 0, 0, 1, -1),
+            new Shape(-1, -1, 0, -1, 1, -1, 0, -2)
     );
 
     private static Tetromino define(char ch, Shape... shapes) {
