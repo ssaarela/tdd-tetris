@@ -41,4 +41,5 @@ public class TetrominoTest {
     public void rotate_O_right() {
         assertThat(Tetromino.O.rotateRight(), sameInstance(Tetromino.O));
     }
+
 }
