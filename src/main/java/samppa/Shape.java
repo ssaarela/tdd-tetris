@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Shape {
 
-    private final List<Point> points;
+    public final List<Point> points;
 
     public Shape(int... coordinates) {
         List<Point> points = new ArrayList<>();
@@ -17,7 +17,4 @@ public class Shape {
         this.points = unmodifiableList(points);
     }
 
-    public List<Point> points() {
-        return points;
-    }
 }
