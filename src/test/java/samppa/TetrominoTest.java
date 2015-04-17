@@ -42,4 +42,34 @@ public class TetrominoTest {
         assertThat(Tetromino.O.rotateRight(), sameInstance(Tetromino.O));
     }
 
+    @Test
+    public void rotations_of_I() {
+        Tetromino t = Tetromino.I;
+        assertThat(t.toString(),
+                equalTo("" +
+                    "....\n" +
+                    "IIII\n" +
+                    "....\n" +
+                    "....\n"
+        ));
+
+        t = t.rotateRight();
+        assertThat(t.toString(),
+                equalTo("" +
+                    "..I.\n" +
+                    "..I.\n" +
+                    "..I.\n" +
+                    "..I.\n"
+                ));
+
+        t = t.rotateRight();
+        assertThat(t.toString(),
+                equalTo("" +
+                    "....\n" +
+                    "IIII\n" +
+                    "....\n" +
+                    "....\n"
+                ));
+    }
+
 }

@@ -59,4 +59,11 @@ public class Tetromino {
     public List<Point> getPoints() {
         return shape.points;
     }
+
+    public String toString() {
+        final Point location = new Point(1, 2);
+        final char[][] board = new char[4][4];
+        shape.points.stream().map(p -> location.plus(p)).forEach(p -> board[p.row][p.col] = ch);
+        return Board.toString(board);
+    }
 }

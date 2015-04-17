@@ -4,7 +4,7 @@ public class Board {
     public static final Point MOVE_RIGHT = new Point(0, 1);
     public static final Point MOVE_LEFT = new Point(0, -1);
     public static final Point MOVE_DOWN = new Point(1, 0);
-    private final char EMPTY = '.';
+    private static final char EMPTY = '.';
     private final int rows;
     private final int cols;
     private char[][] board;
@@ -19,10 +19,13 @@ public class Board {
 
 
     public String toString() {
-        char[][] board = currentBoard();
-        StringBuilder sb = new StringBuilder(rows * cols + rows);
-        for (int row=0; row < rows; row++) {
-            for (int col=0; col < cols; col++) {
+        return toString(currentBoard());
+    }
+
+    public static String toString(char[][] board) {
+        StringBuilder sb = new StringBuilder(board.length * board[0].length + board.length);
+        for (int row=0; row < board.length; row++) {
+            for (int col=0; col < board[row].length; col++) {
                 char c = board[row][col];
                 sb.append(c > 0 ? c : EMPTY);
             }
