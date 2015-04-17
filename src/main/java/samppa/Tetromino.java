@@ -10,11 +10,12 @@ public class Tetromino {
     private static Tetromino define(Shape... shapes) {
         Tetromino first = new Tetromino(shapes[0]);
         Tetromino prev = first;
-        Tetromino next;
+        Tetromino next = prev;
         for (int i=1; i < shapes.length; i++) {
             next = new Tetromino(shapes[i]);
             prev.right = next;
         }
+        next.right = first;
         return first;
     }
 
@@ -29,4 +30,5 @@ public class Tetromino {
     public Tetromino rotateRight() {
         return right;
     }
+
 }

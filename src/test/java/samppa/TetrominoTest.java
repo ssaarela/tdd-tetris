@@ -13,7 +13,10 @@ public class TetrominoTest {
 
     @Test
     public void rotate_tetromino_right() {
-        assertThat(Tetromino.I.rotateRight(), not(nullValue()));
-        assertThat(Tetromino.I.rotateRight(), not(sameInstance(Tetromino.I)));
+        Tetromino t = Tetromino.I.rotateRight();
+        assertThat(t, not(nullValue()));
+        assertThat(t, not(sameInstance(Tetromino.I)));
+        assertThat(t, sameInstance(Tetromino.I.rotateRight()));
+        assertThat(t.rotateRight(), sameInstance(Tetromino.I));
     }
 }
