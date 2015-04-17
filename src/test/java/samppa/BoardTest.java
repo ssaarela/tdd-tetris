@@ -219,5 +219,17 @@ public class BoardTest {
                             "...I..\n" +
                             "...I..\n"));
         }
+
+        @Test
+        public void rotate_T_right() {
+            board.drop(Tetromino.T);
+            assertThat(board.toString(),
+                    equalTo("" +
+                            ".TTT..\n" +
+                            "..T...\n" +
+                            "......\n" +
+                            "......\n"));
+        }
     }
+
 }

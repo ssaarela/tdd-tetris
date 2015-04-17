@@ -12,6 +12,9 @@ public class Tetromino {
     public static final Tetromino O = define('O',
             new Shape(0, 0, 0, 1, 1, 0, 1, 1)
     );
+    public static final Tetromino T = define('T',
+            new Shape(0, -2, 0, -1, 0, 0, 1, -1)
+    );
 
     private static Tetromino define(char ch, Shape... shapes) {
         Tetromino first = new Tetromino(ch, shapes[0]);
