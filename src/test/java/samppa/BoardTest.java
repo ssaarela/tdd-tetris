@@ -112,17 +112,66 @@ public class BoardTest {
         }
 
         @Test
+        public void allow_move_at_bottom() {
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.moveDown();
+            assertThat(board.hasFalling(), equalTo(true));
+        }
+
+        @Test
         public void stick_to_bottom() {
             board.drop(Tetromino.I);
             board.moveDown();
             board.moveDown();
             board.moveDown();
+            assertThat(board.hasFalling(), equalTo(false));
             assertThat(board.toString(),
                     equalTo("" +
                             "......\n" +
                             "......\n" +
                             ".IIII.\n"));
+        }
+
+        @Test
+        public void stick_on_top_of_another() {
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.moveDown();
+            board.moveDown();
+
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.moveDown();
+
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "......\n" +
+                            ".IIII.\n" +
+                            ".IIII.\n"));
             assertThat(board.hasFalling(), equalTo(false));
+        }
+
+        @Test
+        public void end_when_full() {
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.moveDown();
+            board.moveDown();
+
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.moveDown();
+
+            board.drop(Tetromino.I);
+            board.moveDown();
+
+            assertThat(board.toString(),
+                    equalTo("" +
+                            ".IIII.\n" +
+                            ".IIII.\n" +
+                            ".IIII.\n"));
+            assertThat(board.drop(Tetromino.I), equalTo(false));
         }
     }
 }

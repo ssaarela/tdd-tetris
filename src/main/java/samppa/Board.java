@@ -43,12 +43,17 @@ public class Board {
         return board;
     }
 
-    public void drop(Tetromino t) {
+    public boolean drop(Tetromino t) {
         if (current != null) {
             throw new IllegalStateException("falling already");
         }
         this.current = t;
         this.location = new Point(0, cols / 2);
+        if (!allowLocation(location)) {
+            clear();
+            return false;
+        }
+        return true;
     }
 
     public void moveRight() {
@@ -66,7 +71,11 @@ public class Board {
     private boolean allowLocation(Point location) {
         return current.getPoints().stream()
                 .map(p -> p.plus(location))
-                .allMatch(p -> isWithinBoard(p));
+                .allMatch(p -> isWithinBoard(p) && isBlank(p));
+    }
+
+    private boolean isBlank(Point p) {
+        return board[p.row][p.col] == 0;
     }
 
     private boolean isWithinBoard(Point p) {
@@ -88,6 +97,10 @@ public class Board {
         current.getPoints().stream()
                 .map(p -> p.plus(location))
                 .forEach(p -> board[p.row][p.col] = this.current.ch);
+        clear();
+    }
+
+    private void clear() {
         current = null;
         location = null;
     }
