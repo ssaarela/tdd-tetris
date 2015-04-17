@@ -7,16 +7,30 @@ import static org.hamcrest.Matchers.*;
 public class TetrominoTest {
 
     @Test
-    public void create_tetromino() {
+    public void create_I() {
         assertThat(Tetromino.I, not(nullValue()));
     }
 
     @Test
-    public void rotate_tetromino_right() {
+    public void rotate_I_right() {
         Tetromino t = Tetromino.I.rotateRight();
         assertThat(t, not(nullValue()));
         assertThat(t, not(sameInstance(Tetromino.I)));
         assertThat(t, sameInstance(Tetromino.I.rotateRight()));
-        assertThat(t.rotateRight(), sameInstance(Tetromino.I));
+    }
+
+    @Test
+    public void rotate_I_right_around() {
+        assertThat(Tetromino.I.rotateRight().rotateRight(), sameInstance(Tetromino.I));
+    }
+
+    @Test
+    public void create_O() {
+        assertThat(Tetromino.O, not(nullValue()));
+    }
+
+    @Test
+    public void rotate_O_right() {
+        assertThat(Tetromino.O.rotateRight(), sameInstance(Tetromino.O));
     }
 }

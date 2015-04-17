@@ -7,6 +7,10 @@ public class Tetromino {
             new Shape(-1, 2, 0, 2, 1, 2, 2, 2)
     );
 
+    public static final Tetromino O = define(
+            new Shape(0, 0, 0, 1, 1, 0, 1, 1)
+    );
+
     private static Tetromino define(Shape... shapes) {
         Tetromino first = new Tetromino(shapes[0]);
         Tetromino prev = first;
