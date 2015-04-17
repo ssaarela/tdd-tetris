@@ -2,6 +2,8 @@ package samppa;
 
 public class Board {
     public static final Point MOVE_RIGHT = new Point(0, 1);
+    public static final Point MOVE_LEFT = new Point(0, -1);
+    public static final Point MOVE_DOWN = new Point(1, 0);
     private final char EMPTY = '.';
     private final int rows;
     private final int cols;
@@ -50,10 +52,12 @@ public class Board {
         move(this.location.plus(MOVE_RIGHT));
     }
 
-    private void move(Point newLocation) {
+    private boolean move(Point newLocation) {
         if (allowLocation(newLocation)) {
             this.location = newLocation;
+            return true;
         }
+        return false;
     }
 
     private boolean allowLocation(Point location) {
@@ -65,5 +69,13 @@ public class Board {
     private boolean isWithinBoard(Point p) {
         return p.row >= 0 && p.col >= 0 &&
                 p.row < rows && p.col < cols;
+    }
+
+    public void moveLeft() {
+        move(this.location.plus(MOVE_LEFT));
+    }
+
+    public void moveDown() {
+        move(this.location.plus(MOVE_DOWN));
     }
 }
