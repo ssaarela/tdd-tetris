@@ -2,6 +2,7 @@ package samppa;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 public class PointTest {
 
@@ -19,5 +20,7 @@ public class PointTest {
         Point sum = p1.plus(p2);
         assertEquals(sum.row, 0);
         assertEquals(sum.col, 2);
+        assertThat(sum, not(sameInstance(p1)));
+        assertThat(sum, not(sameInstance(p2)));
     }
 }
