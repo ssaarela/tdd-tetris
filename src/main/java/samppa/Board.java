@@ -49,7 +49,7 @@ public class Board {
         }
         this.current = t;
         this.location = new Point(0, cols / 2);
-        if (!allowLocation(location)) {
+        if (!allow(location)) {
             clear();
             return false;
         }
@@ -61,15 +61,19 @@ public class Board {
     }
 
     private boolean move(Point newLocation) {
-        if (allowLocation(newLocation)) {
+        if (allow(newLocation)) {
             this.location = newLocation;
             return true;
         }
         return false;
     }
 
-    private boolean allowLocation(Point location) {
-        return current.getPoints().stream()
+    private boolean allow(Point newLocation) {
+        return allow(current.shape, newLocation);
+    }
+
+    private boolean allow(Shape shape, Point location) {
+        return shape.points.stream()
                 .map(p -> p.plus(location))
                 .allMatch(p -> isWithinBoard(p) && isBlank(p));
     }
@@ -107,5 +111,16 @@ public class Board {
 
     public boolean hasFalling() {
         return this.current != null;
+    }
+
+    public void rotateRight() {
+        Tetromino next = current.rotateRight();
+        if (allow(next)) {
+            current = next;
+        }
+    }
+
+    private boolean allow(Tetromino tetromino) {
+        return allow(tetromino.shape, location);
     }
 }

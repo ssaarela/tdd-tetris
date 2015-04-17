@@ -6,7 +6,7 @@ public class Tetromino {
 
     public static final Tetromino I = define('I',
             new Shape(0, -2, 0, -1, 0, 0, 0, 1),
-            new Shape(-1, 1, 0, 1, 1, 1, 2, 1)
+            new Shape(-1, 0, 0, 0, 1, 0, 2, 0)
     );
 
     public static final Tetromino O = define('O',

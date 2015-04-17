@@ -11,9 +11,10 @@ import net.orfjackal.nestedjunit.NestedJUnit;
 @RunWith(NestedJUnit.class)
 public class BoardTest {
 
-    private Board board = new Board(3, 6);
-
     public class Drop {
+
+        private Board board = new Board(3, 6);
+
         @Test
         public void empty_board() {
             assertThat(board.toString(),
@@ -51,6 +52,8 @@ public class BoardTest {
     }
 
     public class Move {
+
+        private Board board = new Board(3, 6);
 
         @Test
         public void move_I_right() {
@@ -172,6 +175,36 @@ public class BoardTest {
                             ".IIII.\n" +
                             ".IIII.\n"));
             assertThat(board.drop(Tetromino.I), equalTo(false));
+        }
+    }
+
+    public class Rotate {
+
+        private Board board = new Board(4, 6);
+
+        @Test
+        public void cannot_rotate_I_right_at_top() {
+            board.drop(Tetromino.I);
+            board.rotateRight();
+            assertThat(board.toString(),
+                    equalTo("" +
+                            ".IIII.\n" +
+                            "......\n" +
+                            "......\n" +
+                            "......\n"));
+        }
+
+        @Test
+        public void rotate_I_right() {
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.rotateRight();
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "...I..\n" +
+                            "...I..\n" +
+                            "...I..\n" +
+                            "...I..\n"));
         }
     }
 }
