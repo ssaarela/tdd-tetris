@@ -18,12 +18,16 @@ public class Tetromino {
         for (int i=1; i < shapes.length; i++) {
             next = new Tetromino(shapes[i]);
             prev.right = next;
+            next.left = prev;
         }
         next.right = first;
+        first.left = next;
         return first;
     }
 
     public final Shape shape;
+
+    private Tetromino left;
 
     private Tetromino right;
 
@@ -35,4 +39,7 @@ public class Tetromino {
         return right;
     }
 
+    public Tetromino rotateLeft() {
+        return left;
+    }
 }

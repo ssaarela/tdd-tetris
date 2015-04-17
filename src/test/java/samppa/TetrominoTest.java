@@ -25,6 +25,14 @@ public class TetrominoTest {
     }
 
     @Test
+    public void rotate_I_left() {
+        Tetromino t = Tetromino.I.rotateLeft();
+        assertThat(t, not(nullValue()));
+        assertThat(t, not(sameInstance(Tetromino.I)));
+        assertThat(t, sameInstance(Tetromino.I.rotateLeft()));
+    }
+
+    @Test
     public void create_O() {
         assertThat(Tetromino.O, not(nullValue()));
     }
