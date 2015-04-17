@@ -206,5 +206,18 @@ public class BoardTest {
                             "...I..\n" +
                             "...I..\n"));
         }
+
+        @Test
+        public void rotate_I_left() {
+            board.drop(Tetromino.I);
+            board.moveDown();
+            board.rotateLeft();
+            assertThat(board.toString(),
+                    equalTo("" +
+                            "...I..\n" +
+                            "...I..\n" +
+                            "...I..\n" +
+                            "...I..\n"));
+        }
     }
 }

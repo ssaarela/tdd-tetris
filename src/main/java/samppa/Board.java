@@ -114,7 +114,10 @@ public class Board {
     }
 
     public void rotateRight() {
-        Tetromino next = current.rotateRight();
+        rotate(current.rotateRight());
+    }
+
+    private void rotate(Tetromino next) {
         if (allow(next)) {
             current = next;
         }
@@ -122,5 +125,9 @@ public class Board {
 
     private boolean allow(Tetromino tetromino) {
         return allow(tetromino.shape, location);
+    }
+
+    public void rotateLeft() {
+        rotate(current.rotateLeft());
     }
 }
