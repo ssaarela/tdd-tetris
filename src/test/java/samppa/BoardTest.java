@@ -122,6 +122,7 @@ public class BoardTest {
                             "......\n" +
                             "......\n" +
                             ".IIII.\n"));
+            assertThat(board.hasFalling(), equalTo(false));
         }
     }
 }
