@@ -79,7 +79,17 @@ public class Board {
     }
 
     public void moveDown() {
-        move(this.location.plus(MOVE_DOWN));
+        if (!move(this.location.plus(MOVE_DOWN))) {
+            stickIt();
+        }
+    }
+
+    private void stickIt() {
+        current.getPoints().stream()
+                .map(p -> p.plus(location))
+                .forEach(p -> board[p.row][p.col] = this.current.ch);
+        current = null;
+        location = null;
     }
 
     public boolean hasFalling() {
